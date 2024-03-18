@@ -1,0 +1,23 @@
+
+This project consists of taking the 2024 code (Crescendo) and updating it for the 2023 (Charged Up) robot
+
+
+Previous Game summary:  Pickup Cubes and Cones and place on posts.
+
+Physical Robot changes:
+- For Safety, we will remove the long arm but retain the "claw"
+- Put "Claw" on sliders driven by linear actuator
+
+
+Items removed from 2024 (Crescendo) software
+- Subsystems:  climber, shooter, intake
+
+Items retained  in 2024 (Crescendo) software
+- DriveTrain
+- Vision
+- LEDs
+- Constants
+
+
+
+The drivetrain is the same.
