@@ -27,11 +27,13 @@ class Intake(Subsystem):
 
         self._leftGripper = TalonSRX(constants.LEFT_CLIMBER)
         self._leftGripper.configFactoryDefault()
+        self._rightGripper = TalonSRX(constants.RIGHT_CLIMBER)
+        self._rightGripper.configFactoryDefault()
 
     def drive_intakeMotors(self, intake_motor_speed):
         # intake_motor_speed = 0.5
         self._leftGripper.set(TalonSRXControlMode.PercentOutput, intake_motor_speed)
-        self._leftGripper.set(TalonSRXControlMode.PercentOutput, intake_motor_speed)
+        self._rightGripper.set(TalonSRXControlMode.PercentOutput, -intake_motor_speed)
 
     def stop_intakeMotors(self) -> None:
         self._indexroller.set(TalonSRXControlMode.PercentOutput, 0)
@@ -62,6 +64,6 @@ class IntakeCommand(Command):
         return False
 
     def end(self, interrupted: bool):
-        self._sub.intakeMotors()
+        self._sub.stop_intakeMotors()
 
 
