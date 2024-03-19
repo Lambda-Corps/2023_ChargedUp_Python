@@ -10,6 +10,15 @@ The robot has:
 1. Camera
 1. Two intake Rollers
 
+
+#Troubleshooting:
+
+1. Copy the "pyproject.toml" from the current "2024_crescendo" project 
+1. Replace the current project
+1. Run sync command  [  py -3 -m robotpy  sync  ]
+1. Test using simulator [ py -3 -m robotpy  sim ]
+
+
 # 2024_Crescendo
 Welcome to the LambdaCorps code for the FRC 2024 season. The start of the repository should be a robot that can simulate properly, drive forward with positive movements, and properly turn left and right.
 
@@ -83,6 +92,9 @@ Because you're following the steps from this repository, the basic python projec
 We saw on some of the laptops that updating Robotpy didn't work well.  The only way to get the new version installed correctly was to remove all the old related robotpy packages, and uninstall them.  If you need to remove the robotpy related Python packages and reinstall them try the following command in the laptop's terminal:
 ```
 $ for i in `pip list | grep robotpy | cut -d ' ' -f1` ; do pip uninstall -y $i ; done
+
+[Windows]$ py -3 -m pip list | find /I '"robotpy"'
+
 ```
 Then, reinstall robotpy:
 ```
