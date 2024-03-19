@@ -20,7 +20,7 @@ from pathplannerlib.auto import (
     AutoBuilder,
     ReplanningConfig,
 )
-from intake import Intake
+from intake import Intake, IntakeCommand
 
 from drivetrain import DriveTrain, TeleopDriveWithVision
 from leds import LEDSubsystem, FlashLEDCommand
@@ -177,6 +177,7 @@ class MyRobot(TimedCommandRobot):
         #     ).withName("ShooterDefault")
         # )
 
+        self._intake.setDefaultCommand(IntakeCommand(self._intake))
         # self._intake.setDefaultCommand(DefaultIntakeCommand(self._intake))
 
     def __configure_autonomous_commands(self) -> None:
