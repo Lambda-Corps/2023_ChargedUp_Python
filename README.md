@@ -11,7 +11,7 @@ The robot has:
 1. Two intake Rollers
 
 
-#Troubleshooting:
+# Troubleshooting:
 
 1. Copy the "pyproject.toml" from the current "2024_crescendo" project 
 1. Replace the current project
