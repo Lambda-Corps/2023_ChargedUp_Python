@@ -21,7 +21,7 @@ from pathplannerlib.auto import (
     ReplanningConfig,
 )
 from intake import Intake, IntakeCommand
-
+from followapriltag import FollowAprilTag
 from drivetrain import DriveTrain, TeleopDriveWithVision
 from leds import LEDSubsystem, FlashLEDCommand
 from vision import VisionSystem
@@ -277,8 +277,12 @@ class MyRobot(TimedCommandRobot):
             FlashLEDCommand(self._leds, 1.5)
         )
 
+    # def getAutonomousCommand(self) -> Command:
+    #     return self._auto_chooser.getSelected()
+
     def getAutonomousCommand(self) -> Command:
-        return self._auto_chooser.getSelected()
+        return FollowAprilTag(self._drivetrain)
+
 
     def teleopInit(self) -> None:
         if self._auto_command is not None:

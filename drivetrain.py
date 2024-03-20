@@ -444,6 +444,12 @@ class DriveTrain(Subsystem):
         else:
             self._gyro.setAngleAdjustment(0)
 
+    def get_Apriltag_status(self) -> bool:
+        return self.camera_has_target.get()
+
+    def get_Apriltag_yaw(self) -> float:
+        return self.yaw_angle_to_target.get()
+
     ################### Periodic Updates for the Subsystems ######################
 
     def periodic(self) -> None:
@@ -464,6 +470,30 @@ class DriveTrain(Subsystem):
 
         self._field.setRobotPose(pose)
         # SmartDashboard.putNumber("Gyro Angle", self.__get_gyro_heading())
+
+       
+        wpilib.SmartDashboard.putNumber(
+            "ShortRangeFinder", self.rangefinder1.getAverageVoltage()
+        )
+
+        wpilib.SmartDashboard.putBoolean(
+            "PhotonVision: AprilTag in sight:", self.camera_has_target.get()
+        )
+        wpilib.SmartDashboard.putNumber(
+            "Yaw Angle to AprilTag", self.yaw_angle_to_target.get()
+        )
+
+        # if self.camera_has_target.get():
+        #     print ("TargetPreset", self.yaw_angle_to_target.get())
+        # else:
+        #     print("AprilTag Not Present")
+
+        wpilib.SmartDashboard.putNumber(
+            "LeftEncoder", self._left_leader.get_position().value
+        )
+        wpilib.SmartDashboard.putNumber(
+            "RightEncoder", self._right_leader.get_position().value
+        )
 
     def simulationPeriodic(self) -> None:
         """

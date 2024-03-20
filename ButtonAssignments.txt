@@ -1,0 +1,42 @@
+
+Controller Button Assignments
+https://gm0.org/en/latest/docs/software/tutorials/gamepad.html
+
+https://www.google.com/search?sca_esv=7d6ba0ed01275c50&q=f310+gamepad+button+names&tbm=isch&source=lnms&sa=X&ved=2ahUKEwj3lvrFvoOFAxXY_8kDHR91AykQ0pQJegQICxAB&biw=1280&bih=591&dpr=1.25#imgrc=F9Pvqp5Sr8vI4M
+
+
+
+Driver Controller
+
+a - IntakeCommand
+
+Left Trigger - Note Aim  (TeleopDriveWithVision)
+
+Right Trigger - April Tag 
+
+Right Bumper - Swap forward direction
+
+
+Partner controller controls #########################
+
+
+a - ShootCommand
+
+x - IntakeCommand
+
+y - StopIndexAndShooter
+
+b - EjectNote
+
+Right Trigger - Climber Up
+
+Left Trigger - Climber Down
+
+rightBumper - Climber up for 10 seconds
+
+leftBumper - Climber down for 10 seconds
+
+>> POV for shooting positions
+povLeft - SUBWOOFER_2
+povDown - RING_2
+povRight- AMP
