@@ -20,7 +20,20 @@ class FollowAprilTag(commands2.CommandBase):
         
         # Max yaw is about 20 degrees, 
         apriltag_present = self.drivetrain.get_Apriltag_status()
-        turn = self.drivetrain.get_Apriltag_yaw() /100
+
+        # print (apriltag_present)
+
+        turn = -self.drivetrain.get_Apriltag_yaw() /30
+
+        print (turn) 
+
+        maxspeed = 0.2
+
+        if turn > maxspeed :
+            turn = maxspeed
+        if turn < -maxspeed :
+            turn = -maxspeed
+    
 
         wpilib.SmartDashboard.putNumber(
             "Autonomous turn", turn
@@ -28,7 +41,7 @@ class FollowAprilTag(commands2.CommandBase):
 
 
         if apriltag_present:
-            self.drivetrain.drive_teleop(turn, 0.1)    # (Turn , forward)  << This is not correct
+            self.drivetrain.drive_teleop(turn, 0.15)    # (Turn , forward)  << This is not correct
         else:
             self.drivetrain.drive_teleop(0.0, 0.0)
 

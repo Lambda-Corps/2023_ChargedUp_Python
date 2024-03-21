@@ -1,3 +1,4 @@
+import ntcore
 import math
 from commands2.button import CommandXboxController
 import wpilib.drive
@@ -100,6 +101,16 @@ class DriveTrain(Subsystem):
         SmartDashboard.putData("Navx", self._gyro)
 
         self._forward_limiter: SlewRateLimiter = SlewRateLimiter(self.__FORWARD_SLEW)
+
+           ####
+        self.NT_table_instance = ntcore.NetworkTableInstance.getDefault()
+        self.datatable = self.NT_table_instance.getTable("photonvision/limelight")
+        self.camera_has_target = self.datatable.getBooleanTopic("hasTarget").subscribe(True)
+        self.yaw_angle_to_target = self.datatable.getFloatTopic("targetYaw").subscribe(0)
+        self.NT_table_instance.startClient4("Example Client")
+        self.NT_table_instance.setServerTeam(1895)
+        self.NT_table_instance.startDSClient()
+        ###
 
     def __configure_simulation(self) -> None:
         self._sim_gyro = wpilib.simulation.SimDeviceSim("navX-Sensor[4]")
@@ -472,16 +483,16 @@ class DriveTrain(Subsystem):
         # SmartDashboard.putNumber("Gyro Angle", self.__get_gyro_heading())
 
        
-        wpilib.SmartDashboard.putNumber(
-            "ShortRangeFinder", self.rangefinder1.getAverageVoltage()
-        )
+        # wpilib.SmartDashboard.putNumber(
+        #     "ShortRangeFinder", self.rangefinder1.getAverageVoltage()
+        # )
 
-        wpilib.SmartDashboard.putBoolean(
-            "PhotonVision: AprilTag in sight:", self.camera_has_target.get()
-        )
-        wpilib.SmartDashboard.putNumber(
-            "Yaw Angle to AprilTag", self.yaw_angle_to_target.get()
-        )
+        # wpilib.SmartDashboard.putBoolean(
+        #     "PhotonVision: AprilTag in sight:", self.camera_has_target.get()
+        # )
+        # wpilib.SmartDashboard.putNumber(
+        #     "Yaw Angle to AprilTag", self.yaw_angle_to_target.get()
+        # )
 
         # if self.camera_has_target.get():
         #     print ("TargetPreset", self.yaw_angle_to_target.get())

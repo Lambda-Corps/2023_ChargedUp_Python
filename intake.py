@@ -25,9 +25,9 @@ class Intake(Subsystem):
             self.IntakedoubleSolenoid.set(wpilib.DoubleSolenoid.Value.kReverse)
 
 
-        self._leftGripper = TalonSRX(constants.LEFT_CLIMBER)
+        self._leftGripper = TalonSRX(constants.LEFT_GRIPPER)
         self._leftGripper.configFactoryDefault()
-        self._rightGripper = TalonSRX(constants.RIGHT_CLIMBER)
+        self._rightGripper = TalonSRX(constants.RIGHT_GRIPPER)
         self._rightGripper.configFactoryDefault()
 
     def drive_intakeMotors(self, intake_motor_speed):
@@ -36,8 +36,8 @@ class Intake(Subsystem):
         self._rightGripper.set(TalonSRXControlMode.PercentOutput, -intake_motor_speed)
 
     def stop_intakeMotors(self) -> None:
-        self._indexroller.set(TalonSRXControlMode.PercentOutput, 0)
-        self._intakeroller.set(TalonSRXControlMode.PercentOutput, 0)
+        self._leftGripper.set(TalonSRXControlMode.PercentOutput, 0)
+        self._rightGripper.set(TalonSRXControlMode.PercentOutput, 0)
 
 
 
@@ -58,7 +58,7 @@ class IntakeCommand(Command):
         pass
 
     def execute(self):
-        self._sub.drive_intakeMotors(0.5)
+        self._sub.drive_intakeMotors(0.0)
 
     def isFinished(self) -> bool:
         return False
