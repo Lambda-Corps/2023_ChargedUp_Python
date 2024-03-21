@@ -317,6 +317,7 @@ class DriveTrain(Subsystem):
     def __drive_teleop_volts(self, forward: float, turn: float) -> None:
 
         speeds = wpilib.drive.DifferentialDrive.curvatureDriveIK(forward, turn, True)
+        # speeds = wpilib.drive.DifferentialDrive.arcadeDrive
 
         self._left_volts_out.output = speeds.left * 12.0
         self._right_volts_out.output = speeds.right * 12.0

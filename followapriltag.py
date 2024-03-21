@@ -12,7 +12,6 @@ class FollowAprilTag(commands2.CommandBase):
         self.drivetrain = drivetrain
         self.addRequirements(drivetrain)
 
-
     def initialize(self) -> None:
         print ("Started AUTO ")
 
@@ -34,11 +33,9 @@ class FollowAprilTag(commands2.CommandBase):
         if turn < -maxspeed :
             turn = -maxspeed
     
-
         wpilib.SmartDashboard.putNumber(
             "Autonomous turn", turn
         )
-
 
         if apriltag_present:
             self.drivetrain.drive_teleop(turn, 0.15)    # (Turn , forward)  << This is not correct
