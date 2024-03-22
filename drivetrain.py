@@ -309,6 +309,11 @@ class DriveTrain(Subsystem):
         turn = self.__clamp(turn, self.__CLAMP_SPEED)
         forward = self.__clamp(forward, self.__CLAMP_SPEED)
 
+        print ("Forward: "  , forward, "    Turn: ", turn)
+
+        # turn = 0.0
+        # forward = 0.0
+
         if percent_out:
             self.__drive_teleop_percent(forward, turn)
         else:

@@ -49,7 +49,7 @@ class MyRobot(TimedCommandRobot):
         )
 
         # Instantiate any subystems
-        self.compressor = wpilib.Compressor(wpilib.PneumaticsModuleType.CTREPCM)
+        #### self.compressor = wpilib.Compressor(wpilib.PneumaticsModuleType.CTREPCM)
 
         self._intake: Intake = Intake()
 
