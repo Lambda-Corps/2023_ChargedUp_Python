@@ -53,7 +53,7 @@ import constants
 class DriveTrain(Subsystem):
     __DRIVER_DEADBAND = 0.1
     __FORWARD_SLEW = 3  # 1/3 of a second to full speed
-    __CLAMP_SPEED = 0.5
+    __CLAMP_SPEED = 0.3
 
     def __init__(self) -> None:
         super().__init__()
@@ -64,8 +64,9 @@ class DriveTrain(Subsystem):
             forwardChannel=0,
             reverseChannel=1,
         )
-        #  True has shuttle  out
-        HighSpeed = False
+
+        #  True has shuttle  out  This is low gear
+        HighSpeed = True
         if HighSpeed:
             self.GearboxdoubleSolenoid.set(wpilib.DoubleSolenoid.Value.kForward)
         else: 
@@ -309,10 +310,12 @@ class DriveTrain(Subsystem):
         turn = self.__clamp(turn, self.__CLAMP_SPEED)
         forward = self.__clamp(forward, self.__CLAMP_SPEED)
 
-        print ("Forward: "  , forward, "    Turn: ", turn)
-
         # turn = 0.0
         # forward = 0.0
+        wpilib.SmartDashboard.putNumber("Forward", forward)
+        wpilib.SmartDashboard.putNumber("Turn", turn)
+
+
 
         if percent_out:
             self.__drive_teleop_percent(forward, turn)

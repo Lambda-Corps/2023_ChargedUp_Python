@@ -24,9 +24,9 @@ class FollowAprilTag(commands2.CommandBase):
 
         turn = -self.drivetrain.get_Apriltag_yaw() * 0.02
 
-        print (turn) 
+        # print (turn) 
 
-        maxspeed = 0.1
+        maxspeed = 0.3
 
         if turn > maxspeed :
             turn = maxspeed
@@ -38,7 +38,7 @@ class FollowAprilTag(commands2.CommandBase):
         )
 
         # turn = 0.0
-        forward = 0.0
+        forward = 0.15
 
         if apriltag_present:
             self.drivetrain.drive_teleop(forward, turn)    # (Turn , forward)  << This is not correct
