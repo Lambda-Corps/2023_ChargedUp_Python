@@ -20,7 +20,7 @@ from pathplannerlib.auto import (
     AutoBuilder,
     ReplanningConfig,
 )
-from intake import Intake, IntakeCommand
+from intake import Intake, IntakeCommand, PulseIntakeMotorCommand
 from followapriltag import FollowAprilTag
 from drivetrain import DriveTrain, TeleopDriveWithVision
 from leds import LEDSubsystem, FlashLEDCommand
@@ -100,6 +100,17 @@ class MyRobot(TimedCommandRobot):
         )
 
         ######################## Partner controller controls #########################
+
+
+        self._partner_controller.rightBumper().whileTrue(
+            RunCommand(
+                lambda: self._intake.drive_intakeMotors(
+                    self._driver_controller.getLeftY())
+            )
+        )
+
+        self._driver_controller.a().onTrue(PulseIntakeMotorCommand(self._intake, 1, 0.3))
+
         # self._partner_controller.a().onTrue(ShootCommand(self._intake, self._shooter))
         # self._partner_controller.x().onTrue(IntakeCommand(self._intake))
         # self._partner_controller.y().onTrue(
