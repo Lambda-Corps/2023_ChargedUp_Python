@@ -101,15 +101,15 @@ class MyRobot(TimedCommandRobot):
 
         ######################## Partner controller controls #########################
 
-
+        ##  This is the left joystick forward/aft movement while holding the right bumper
         self._partner_controller.rightBumper().whileTrue(
             RunCommand(
                 lambda: self._intake.drive_intakeMotors(
-                    self._driver_controller.getLeftY())
+                    self._partner_controller.getLeftY())
             )
         )
 
-        self._driver_controller.a().onTrue(PulseIntakeMotorCommand(self._intake, 1, 0.3))
+        self._partner_controller.a().onTrue(PulseIntakeMotorCommand(self._intake, 1, 0.3))
 
         # self._partner_controller.a().onTrue(ShootCommand(self._intake, self._shooter))
         # self._partner_controller.x().onTrue(IntakeCommand(self._intake))
@@ -188,7 +188,7 @@ class MyRobot(TimedCommandRobot):
         #     ).withName("ShooterDefault")
         # )
 
-        self._intake.setDefaultCommand(IntakeCommand(self._intake))
+######### >>>>        self._intake.setDefaultCommand(IntakeCommand(self._intake))
         # self._intake.setDefaultCommand(DefaultIntakeCommand(self._intake))
 
     def __configure_autonomous_commands(self) -> None:
@@ -323,4 +323,5 @@ class MyRobot(TimedCommandRobot):
         pass
 
     def teleopPeriodic(self) -> None:
+        # print ("self._partner_controller.getLeftY(): ", self._partner_controller.getLeftY())
         return super().teleopPeriodic()

@@ -31,7 +31,8 @@ class Intake(Subsystem):
         self._rightGripper.configFactoryDefault()
 
     def drive_intakeMotors(self, intake_motor_speed):
-        intake_motor_speed = 0.2 * intake_motor_speed  ## Limit speed of intake
+        intake_motor_speed =  intake_motor_speed  ## Limit speed of intake
+        print ("intake_motor_speed: ", intake_motor_speed)
 
 
         self._leftGripper.set(TalonSRXControlMode.PercentOutput, intake_motor_speed)
@@ -79,16 +80,16 @@ class PulseIntakeMotorCommand(Command):
         self._sub = intake
         self._speed = speed
         self._pulseTime = pulseTime
-        self._counter = pulseTime * 50 ## Number of passes thru execution
 
         self.addRequirements(self._sub)
 
     def initialize(self):
-        pass
+        self._counter = self._pulseTime * 50 ## Number of passes thru execution
 
     def execute(self):
         self._sub.drive_intakeMotors(self._speed)
         self._counter = self._counter - 1
+        print ("Counter:  ", self._counter)
 
     def isFinished(self) -> bool:
         return (self._counter < 0)
